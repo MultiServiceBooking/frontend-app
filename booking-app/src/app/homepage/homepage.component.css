@@ -1,0 +1,50 @@
+.card {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Podesi širinu kartice */
+    width: 400px;
+    /* Osiguraj da kartice koriste ceo raspoloživi prostor unutar kolone */
+    margin-bottom: 20px;
+    margin-left: 30px;
+  }
+  
+  .card-title {
+    font-size: 1.5rem;
+  }
+  
+  .card-text {
+    font-size: 1rem;
+  }
+  
+  .container {
+    margin-top: 20px;
+  }
+  
+  .row {
+    display: flex;
+    flex-wrap: wrap; /* Omogućava prelamanje kartica u novi red kad ne stanu */
+  }
+  
+  .col-sm-4 {
+    /* Ako želiš dodatni razmak između kartica */
+    padding: 0 15px;
+  }
+  
+  @media (max-width: 767.98px) {
+    .col-sm-4 {
+      flex: 1 0 100%; /* Na manjim ekranima kartice se prelamaju u jedan red */
+    }
+  }
+
+  .star-rating {
+    display: inline-flex;
+    direction: ltr; /* Osigurava da se slike zvezdica prikazuju s leva na desno */
+  }
+  
+  .star-rating img {
+    width: 20px; /* Podešavanje veličine zvezdica */
+    height: 20px; /* Podešavanje veličine zvezdica */
+    margin-right: 2px; /* Razmak između zvezdica */
+  }
+  
+  

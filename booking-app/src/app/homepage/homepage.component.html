@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="row">
+      <div *ngFor="let hotel of hotels" class="col-sm-4 mb-4">
+        <div class="card" (click)="viewHotelDetails(hotel.id)">
+          <div class="card-body">
+            <h5 class="card-title">{{ hotel.name }}</h5>
+            <p class="card-text">
+                <div class="star-rating">
+                    <img *ngFor="let star of getStars(hotel.starRating)" [src]="star" alt="Star">
+                  </div>
+                  <br>
+               {{ hotel.address }}<br>
+              {{ hotel.phoneNumber }} ,  {{ hotel.email }} <br>
+            <!-- Opcionalno dodaj dugme za više informacija -->
+            <!--<a href="#" class="btn btn-primary">More Info</a> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
