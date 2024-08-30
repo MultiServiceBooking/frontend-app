@@ -1,9 +1,5 @@
 <div class="pozadina">
   <div class="container">
-    <h2>Login</h2>
-    <div *ngIf="userDoesNotExist" class="error-message">
-      User does not exist. Please check your credentials and try again.
-    </div>
     <form>
       <div>
         <label for="username">Username:</label>
@@ -13,6 +9,14 @@
       <div>
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required [(ngModel)]="password">
+      </div>
+
+      <div>
+        <button (click)="login()">Login</button>
+      </div>
+
+      <div>
+        <p class="error-message">{{ errorMessage }}</p>
       </div>
     </form>
 </div>

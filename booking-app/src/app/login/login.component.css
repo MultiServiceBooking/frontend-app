@@ -67,8 +67,6 @@ button:hover {
     margin: 10px 0px;
     width: 246px;
     padding: 10px;
-    border: 2px solid red;
-    border-radius: 4px;
     text-align: center;
     color: red;
 }
