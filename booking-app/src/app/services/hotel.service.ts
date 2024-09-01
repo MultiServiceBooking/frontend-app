@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/env/environment';
 import { Room } from '../model/room.model';
@@ -9,9 +9,9 @@ import { Hotel } from '../model/hotel.model';
   providedIn: 'root'
 })
 export class HotelService {
-  private apiUrl = `${environment.apiHost}relational/hotels`; 
-  private searchUrl = `${environment.apiHost}relational/rooms/search`;
-  private reservationsUrl = `${environment.apiHost}relational/reservations`;
+  private apiUrl = `${environment.apiHost}hotels`; 
+  private searchUrl = `${environment.apiHost}rooms/search`;
+  private reservationsUrl = `${environment.apiHost}reservations`;
 
   constructor(private http: HttpClient) { }
 
@@ -32,13 +32,13 @@ export class HotelService {
   }
 
   createReservation(roomId: number, startDate: string, endDate: string, guestCount: number): Observable<any> {
-    return this.http.post<any>(`${this.reservationsUrl}/create`, null, {
-      params: {
-        roomId: roomId.toString(),
-        startDate: startDate,
-        endDate: endDate,
-        guestCount: guestCount.toString()
-      }
-    });
+    const params = new HttpParams()
+      .set('roomId', roomId.toString())
+      .set('startDate', startDate)
+      .set('endDate', endDate)
+      .set('guestCount', guestCount.toString());
+
+    return this.http.post<any>(`${this.reservationsUrl}/create`, null, { params });
   }
+  
 }
