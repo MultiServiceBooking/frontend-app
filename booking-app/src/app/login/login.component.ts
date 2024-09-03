@@ -24,15 +24,23 @@ export class LoginComponent {
         if (response.message === 'Login successful') { 
           this.router.navigate(['/']); 
         } else {
-          this.errorMessage = response.error || 'Unexpected response from server';
+          this.errorMessage = response.error.error;
         }
       },
       error: (errorResponse) => {
-        this.errorMessage = errorResponse.error?.error || 'An error occurred';
-        console.log(errorResponse);
+        switch (errorResponse.status) {
+          case 401:
+            this.errorMessage = errorResponse.error?.errorMessage || 'Incorrect password. Try again.';
+            break;
+          case 404:
+            this.errorMessage = errorResponse.error?.errorMessage || 'User with this email address does not exist.';
+            break;
+          default:
+            this.errorMessage = errorResponse.error?.errorMessage || 'An unexpected error occurred.';
+            break;
+        }
       }
     });
   }
-  
 
 }

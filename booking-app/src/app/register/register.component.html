@@ -1,0 +1,50 @@
+<body>
+    <div class="form-box signup">
+        <div class="form-details">
+            <h2>Create Account</h2>
+            <p>To become a part of our community, please sign up using your personal information.</p>
+        </div>
+        <div class="form-content">
+            <h2>SIGNUP</h2>
+            <form (ngSubmit)="register()" #registerForm="ngForm">
+                <div class="input-field">
+                    <input type="text" name="name" [(ngModel)]="name" required>
+                    <label>Enter your name</label>
+                </div>
+                <div class="input-field">
+                    <input type="text" name="surname" [(ngModel)]="surname" required>
+                    <label>Enter your surname</label>
+                </div>
+                <div class="input-field">
+                    <input type="text" name="email" [(ngModel)]="email" required>
+                    <label>Enter your email</label>
+                </div>
+                <div class="input-field">
+                    <input type="password" name="password" [(ngModel)]="password" required>
+                    <label>Create password</label>
+                </div>
+                <div class="input-field">
+                    <input type="password" name="confirmPassword" [(ngModel)]="confirmPassword" required>
+                    <label>Confirm password</label>
+                </div>
+                <div class="input-field">
+                    <input type="text" name="phoneNumber" [(ngModel)]="phoneNumber" required>
+                    <label>Enter your phone number</label>
+                </div>
+                <div class="policy-text">
+                    <input type="checkbox" id="policy" [(ngModel)]="policyAccepted" name="policyAccepted">
+                    <label for="policy">
+                        I agree to the
+                        <a href="#" class="option">Terms & Conditions</a>
+                    </label>
+                </div>
+                <button type="submit">Sign Up</button>
+            </form>
+            <div class="bottom-link">
+                Already have an account? 
+                <a href="http://localhost:4200/login" id="login-link">Login</a>
+            </div>
+        </div>
+    </div>
+    </body>
+    

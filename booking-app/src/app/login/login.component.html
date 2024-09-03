@@ -1,24 +1,26 @@
-<div class="pozadina">
-  <div class="container">
-    <form>
-      <div>
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required [(ngModel)]="username">
-      </div>
-  
-      <div>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required [(ngModel)]="password">
-      </div>
-
-      <div>
-        <button (click)="login()">Login</button>
-      </div>
-
-      <div>
-        <p class="error-message">{{ errorMessage }}</p>
-      </div>
-    </form>
-</div>
-
-</div>
+        <div class="form-box login">
+            <div class="form-details">
+                <h2>Welcome Back</h2>
+                <p>Please log in using your personal information to stay connected with us.</p>
+            </div>
+            <div class="form-content">
+                <h2>LOGIN</h2>
+                <form action="#">
+                    <div class="input-field">
+                        <input type="text" required [(ngModel)]="username" name="username">
+                        <label>Email</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" required [(ngModel)]="password" name="password">
+                        <label>Password</label>
+                    </div>
+                    <a href="#" class="forgot-pass-link">Forgot password?</a>
+                    <button type="submit" (click)="login()">Log In</button><br>
+                    <p class="error-message">{{ errorMessage }}</p>
+                </form>
+                <div class="bottom-link">
+                    Don't have an account?
+                    <a href="http://localhost:4200/register" id="signup-link">Signup</a>
+                </div>
+            </div>
+        </div>

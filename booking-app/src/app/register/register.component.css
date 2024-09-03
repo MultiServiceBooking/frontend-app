@@ -356,12 +356,3 @@ form button:hover {
         padding: 30px 20px;
     }
 }
-
-.error-message {
-    margin: 10px 0px;
-    width: 500px;
-    padding: 10px;
-    text-align: center;
-    color: red;
-    margin-left: 180px;
-}
