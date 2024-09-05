@@ -22,6 +22,7 @@ export class LoginComponent {
     this.authService.login(this.username, this.password).subscribe({
       next: (response) => {
         if (response.message === 'Login successful') { 
+          localStorage.setItem('loggedUser', JSON.stringify({ username: this.username, password: this.password }));
           this.router.navigate(['/']); 
         } else {
           this.errorMessage = response.error.error;

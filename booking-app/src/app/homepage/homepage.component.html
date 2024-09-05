@@ -1,13 +1,43 @@
+<div class="col-md-8">
+  <div class="search-container">
+    <input 
+      type="text" 
+      placeholder="Where to?" 
+      [(ngModel)]="address" 
+      class="search-input">
+    <input 
+      type="date" 
+      placeholder="From" 
+      [(ngModel)]="startDate" 
+      class="search-input">
+    <input 
+      type="date" 
+      placeholder="To" 
+      [(ngModel)]="endDate" 
+      class="search-input">
+    <input 
+      type="text" 
+      placeholder="How many guests?" 
+      [(ngModel)]="guestCount" 
+      class="search-input">
+    <button 
+      class="search-button" 
+      (click)="search()">Search</button>
+      <button 
+      class="search-button" 
+      (click)="refresh()">Refresh</button>
+  </div>
 <div class="container">
     <div class="row">
       <div *ngFor="let hotel of hotels" class="col-sm-4 mb-4">
         <div class="card" (click)="viewHotelDetails(hotel.id)">
           <div class="card-body">
-            <h5 class="card-title">{{ hotel.name }}</h5>
+            <img class="images" [src]="hotel.image" alt="Hotel Image">
+            <h5 class="card-title">{{ hotel.name }} <div class="star-rating">
+              <img *ngFor="let star of getStars(hotel.starRating)" [src]="star" alt="Star">
+            </div></h5>
             <p class="card-text">
-                <div class="star-rating">
-                    <img *ngFor="let star of getStars(hotel.starRating)" [src]="star" alt="Star">
-                  </div>
+                
                   <br>
                {{ hotel.address }}<br>
               {{ hotel.phoneNumber }} ,  {{ hotel.email }} <br>

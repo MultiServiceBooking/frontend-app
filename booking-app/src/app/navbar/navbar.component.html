@@ -1,8 +1,11 @@
 <body>
     <div  class="menu-container">
       <div class="dropdown">
-        <button (click)="redirectToLogin()" class="button login">Login</button>
-        <button (click)="redirectToRegister()" class="button login">Register</button>
+        <button *ngIf="!isLoggedUser()" (click)="redirectToLogin()" class="button login">Login</button>
+        <button *ngIf="!isLoggedUser()" (click)="redirectToRegister()" class="button login">Register</button>
+        <button *ngIf="isLoggedUser()" (click)="redirectToReservations()" class="button login">My reservations</button>
+        <button *ngIf="isLoggedUser()" (click)="logout()" class="button login">Logout</button>
+
         <div class="dropdown-content">
         </div>
       </div>

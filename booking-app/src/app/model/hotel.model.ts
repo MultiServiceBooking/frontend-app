@@ -5,5 +5,7 @@ export interface Hotel {
     starRating: number;
     phoneNumber: string;
     email: string;
+    image: string;
+    description: string;
   }
   

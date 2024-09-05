@@ -7,6 +7,11 @@
     margin-bottom: 20px;
     margin-left: 30px;
   }
+
+  .images{
+    width: 400px;
+    height: 250px;
+  }
   
   .card-title {
     font-size: 1.5rem;
@@ -45,6 +50,40 @@
     width: 20px; /* Podešavanje veličine zvezdica */
     height: 20px; /* Podešavanje veličine zvezdica */
     margin-right: 2px; /* Razmak između zvezdica */
+  }
+
+  .search-container {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Razmak između input polja i dugmeta */
+    margin: 20px 0; /* Razmak od vrha i dna */
+    margin-left: 350px;
+  }
+  
+  .search-input {
+    padding: 8px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 150px;
+  }
+  
+  .search-input[type="date"] {
+    width: 180px;
+  }
+  
+  .search-button {
+    padding: 8px 16px;
+    font-size: 1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .search-button:hover {
+    background-color: #0056b3;
   }
   
   

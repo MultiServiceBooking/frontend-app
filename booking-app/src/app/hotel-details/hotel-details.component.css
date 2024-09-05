@@ -5,6 +5,13 @@
   padding-left: 5px;
 }
 
+
+.images{
+  width: 400px;
+  height: 250px;
+}
+
+
 .card-title {
   font-size: 1.5rem;
 }
@@ -42,6 +49,7 @@
   align-items: center;
   gap: 10px; /* Razmak između input polja i dugmeta */
   margin: 20px 0; /* Razmak od vrha i dna */
+  margin-left: 350px;
 }
 
 .search-input {

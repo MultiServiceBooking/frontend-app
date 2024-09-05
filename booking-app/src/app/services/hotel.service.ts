@@ -40,5 +40,15 @@ export class HotelService {
 
     return this.http.post<any>(`${this.reservationsUrl}/create`, null, { params });
   }
+
+  searchHotels(address?: string, startDate?: string, endDate?: string, numberOfGuests?: number): Observable<Hotel[]> {
+    let params = new HttpParams();
+    if (address) params = params.set('address', address);
+    if (startDate) params = params.set('startDate', startDate);
+    if (endDate) params = params.set('endDate', endDate);
+    if (numberOfGuests != null) params = params.set('numberOfGuests', numberOfGuests.toString());
+
+    return this.http.get<Hotel[]>(`${this.apiUrl}/search`, { params });
+  }
   
 }

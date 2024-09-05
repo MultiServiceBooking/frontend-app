@@ -4,5 +4,6 @@ export interface Room {
     roomStatus: string; 
     price: number;
     description: string;
+    image: string;
   }
   

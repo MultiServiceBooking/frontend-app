@@ -26,29 +26,52 @@ export class HotelDetailsComponent implements OnInit{
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      this.hotelId = +params.get('id')!; 
-      
+      this.hotelId = +params.get('id')!;
+  
+      // Fetch rooms by hotel ID
       this.hotelService.getRoomsByHotelId(this.hotelId).subscribe(
         (rooms) => {
           this.rooms = rooms;
-          console.log('Rooms:', JSON.stringify(rooms, null, 2)); 
+          console.log('Rooms:', JSON.stringify(rooms, null, 2));
         },
         (error) => {
           console.error('Error fetching hotel rooms:', error);
         }
       );
-
+  
+      // Fetch hotel details by hotel ID
       this.hotelService.getHotelById(this.hotelId).subscribe(
         (hotel) => {
           this.hotel = hotel;
-          console.log('Hotel:', JSON.stringify(hotel, null, 2)); 
+          console.log('Hotel:', JSON.stringify(hotel, null, 2));
         },
         (error) => {
           console.error('Error fetching hotel details:', error);
         }
       );
     });
+  
+    this.route.queryParams.subscribe(params => {
+      this.startDate = params['startDate'] || '';
+      this.endDate = params['endDate'] || '';
+      this.guestCount = +params['guestCount'] || 1;
+  
+      console.log('Received startDate:', this.startDate);
+      console.log('Received endDate:', this.endDate);
+      console.log('Received guestCount:', this.guestCount);
+    });
+
+    this.hotelService.searchAvailableRooms(this.guestCount, this.startDate, this.endDate, this.hotelId).subscribe(
+      (rooms) => {
+        this.rooms = rooms;
+        console.log('Filtered rooms:', JSON.stringify(rooms, null, 2));
+      },
+      (error) => {
+        console.error('Error searching rooms:', error);
+      }
+    );
   }
+  
 
   searchRooms(): void {
     this.hotelService.searchAvailableRooms(this.guestCount, this.startDate, this.endDate, this.hotelId).subscribe(

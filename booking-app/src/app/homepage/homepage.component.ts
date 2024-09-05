@@ -10,6 +10,10 @@ import { Hotel } from '../model/hotel.model';
 })
 export class HomepageComponent implements OnInit {
   hotels: Hotel[] = [];
+  guestCount: string = '';
+  startDate: string = '';
+  endDate: string = '';
+  address: string = '';
 
   constructor(private router: Router, private hotelService: HotelService) { 
 
@@ -39,6 +43,41 @@ export class HomepageComponent implements OnInit {
   }
 
   viewHotelDetails(hotelId: number): void {
-    this.router.navigate(['/hotel-details', hotelId]);
+    this.router.navigate(['/hotel-details', hotelId], {
+      queryParams: {
+        startDate: this.startDate,
+        endDate: this.endDate,
+        guestCount: this.guestCount
+      }
+    });
+  }
+  
+  search(): void {
+    const guestCountNumber = Number(this.guestCount);
+    this.hotelService.searchHotels(this.address, this.startDate, this.endDate, guestCountNumber).subscribe(
+      (hotels) => {
+        this.hotels = hotels;
+        console.log('Hotels:', hotels); 
+      },
+      (error) => {
+        console.error('Error fetching hotels:', error);
+      }
+    );
+  }
+
+  refresh(): void {
+    this.hotelService.getHotels().subscribe(
+      (hotels) => {
+        this.hotels = hotels;
+        console.log('Hotels:', hotels); 
+        this.address = '';
+        this.startDate = '';
+        this.endDate = '';
+        this.guestCount = '';
+      },
+      (error) => {
+        console.error('Error fetching hotels:', error);
+      }
+    );
   }
 }
