@@ -116,6 +116,20 @@ html {
 
 .review-content {
   margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+}
+
+.review-content {
+  display: flex;
+  flex-direction: column;
+  margin-left: 50px;
+}
+
+.user-review-details
+{
+  display: flex;
+  flex-direction: column;
 }
 
 .review-navigation {
@@ -174,6 +188,7 @@ html {
 
 #reviews {
   padding-top: 60px; /* Prilagodite ovu vrednost visini vašeg navigacionog bara */
+  margin-left: 300px;
 }
 
 .location-image
@@ -186,4 +201,10 @@ html {
 {
   width: 500px;
   height: 200px;
+}
+
+.mb-4
+{
+  margin-left: 415px;
+  margin-top: 25px;
 }

@@ -37,5 +37,7 @@ export class AuthService {
     }
   }
   
-  
+  getUserById(id: string): Observable<User> {
+    return this.http.get<User>(`${environment.apiHost}users/findById/${id}`);
+  }
 }

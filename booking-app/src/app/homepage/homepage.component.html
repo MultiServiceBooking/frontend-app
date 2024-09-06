@@ -32,7 +32,7 @@
       <div *ngFor="let hotel of hotels" class="col-sm-4 mb-4">
         <div class="card" (click)="viewHotelDetails(hotel.id)">
           <div class="card-body">
-            <img class="images" [src]="hotel.image" alt="Hotel Image">
+            <img class="images" [src]="hotel.images[0]" alt="Hotel Image">
             <h5 class="card-title">{{ hotel.name }} <div class="star-rating">
               <img *ngFor="let star of getStars(hotel.starRating)" [src]="star" alt="Star">
             </div></h5>

@@ -5,7 +5,7 @@
         <h3>{{ trimAddress(hotels.get(reservation.id)?.address || '') }}</h3>
         <p>{{ formatDate(reservation.startDate) }} - {{ formatDate(reservation.endDate) }}</p>
         <div class="card">
-            <img class="images" [src]="hotels.get(reservation.id)?.image" alt="Hotel Image">
+            <img class="images" [src]="hotels.get(reservation.id)?.images?.[0] || 'assets/location.png'" alt="Hotel Image">
             <div class="card-details">
                 <p class="hotelTitle">{{ hotels.get(reservation.id)?.name }}</p>
                 <p>{{ formatDate(reservation.startDate) }} - {{ formatDate(reservation.endDate) }}  {{ trimAddress(hotels.get(reservation.id)?.address || '') }} </p>
@@ -15,7 +15,7 @@
                 <button class="review-button" (click)="review(hotels.get(reservation.id)?.id || 0, reservation.id)">Write a review</button>
             </div>
         </div>
-      </div>
+      </div> 
     </div>
   </div>
   
