@@ -6,6 +6,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { HotelDetailsComponent } from './hotel-details/hotel-details.component';
 import { RegisterComponent } from './register/register.component';
 import { GuestReservationsComponent } from './guest-reservations/guest-reservations.component';
+import { ReservationReviewComponent } from './reservation-review/reservation-review.component';
 
 const routes: Routes = [
   { path: 'navbar', component: NavbarComponent},
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: '', component: HomepageComponent},
   { path: 'hotel-details/:id', component: HotelDetailsComponent},
   { path: 'register', component: RegisterComponent},
-  { path: 'reservations', component: GuestReservationsComponent}
+  { path: 'reservations', component: GuestReservationsComponent},
+  { path: 'reservation-review/:hotelId/:reservationId', component: ReservationReviewComponent}
 ];
 
 @NgModule({

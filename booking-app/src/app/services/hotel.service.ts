@@ -27,6 +27,10 @@ export class HotelService {
     return this.http.get<Hotel>(`${this.apiUrl}/${hotelId}`);
   }
 
+  getHotelByReservationId(reservationId: number): Observable<Hotel> {
+    return this.http.get<Hotel>(`${this.apiUrl}/reservations/${reservationId}`);
+  }
+
   searchAvailableRooms(guestCount: number, startDate: string, endDate: string, hotelId: number): Observable<Room[]> {
     return this.http.get<Room[]>(`${this.searchUrl}?guestCount=${guestCount}&startDate=${startDate}&endDate=${endDate}&hotelId=${hotelId}`);
   }

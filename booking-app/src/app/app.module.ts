@@ -13,6 +13,7 @@ import { RegisterComponent } from './register/register.component';
 import { GuestReservationsComponent } from './guest-reservations/guest-reservations.component';
 
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { ReservationReviewComponent } from './reservation-review/reservation-review.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     HomepageComponent,
     HotelDetailsComponent,
     RegisterComponent,
-    GuestReservationsComponent
+    GuestReservationsComponent,
+    ReservationReviewComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,6 @@
 .container
 {
-    margin-left: 50px;
+    margin-left: 250px;
     margin-top: 100px;
 }
 
@@ -8,3 +8,50 @@
 {
     font-size: 30px;
 }
+
+.images
+{
+    height: 100px;
+    width: 200px;
+    margin-left: 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+.hotelTitle
+{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.card {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 1000px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .card-details
+  {
+    margin-left: 20px;
+  }
+
+  .card-details2
+  {
+    margin-left: 380px;
+  }
+
+  .review-button
+  {
+    margin-top: 85px;
+    border-radius: 5px;
+    border-color: rgb(19, 153, 198);
+    padding: 8px;
+    color: rgb(19, 153, 198);
+    background-color: white;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+

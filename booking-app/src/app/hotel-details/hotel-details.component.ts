@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { Room } from '../model/room.model';
 import { Hotel } from '../model/hotel.model';
+import { Review } from '../model/review.model';
+import { ReviewService } from '../services/review.service';
 
 @Component({
   selector: 'app-hotel-details',
@@ -17,18 +19,20 @@ export class HotelDetailsComponent implements OnInit{
   startDate: string = '';
   endDate: string = '';
   hotelId: number = 0;
+  reviews: Review[] = [];
+  currentReviewIndex: number = 0;
 
 
   constructor(
     private route: ActivatedRoute,
-    private hotelService: HotelService
+    private hotelService: HotelService,
+    private reviewService: ReviewService
   ) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.hotelId = +params.get('id')!;
   
-      // Fetch rooms by hotel ID
       this.hotelService.getRoomsByHotelId(this.hotelId).subscribe(
         (rooms) => {
           this.rooms = rooms;
@@ -39,7 +43,6 @@ export class HotelDetailsComponent implements OnInit{
         }
       );
   
-      // Fetch hotel details by hotel ID
       this.hotelService.getHotelById(this.hotelId).subscribe(
         (hotel) => {
           this.hotel = hotel;
@@ -68,6 +71,16 @@ export class HotelDetailsComponent implements OnInit{
       },
       (error) => {
         console.error('Error searching rooms:', error);
+      }
+    );
+
+    this.reviewService.getHotelReviews(this.hotelId.toString()).subscribe(
+      (reviews) => {
+        this.reviews = reviews;
+        console.log('Hotel reviews:', JSON.stringify(reviews, null, 2));
+      },
+      (error) => {
+        console.error('Error fetching reviews:', error);
       }
     );
   }
@@ -105,5 +118,17 @@ export class HotelDetailsComponent implements OnInit{
         console.error('Error creating reservation:', error);
       }
     );
+  }
+
+  showPreviousReview(): void {
+    if (this.reviews.length > 0) {
+      this.currentReviewIndex = (this.currentReviewIndex > 0) ? this.currentReviewIndex - 1 : this.reviews.length - 1;
+    }
+  }
+
+  showNextReview(): void {
+    if (this.reviews.length > 0) {
+      this.currentReviewIndex = (this.currentReviewIndex < this.reviews.length - 1) ? this.currentReviewIndex + 1 : 0;
+    }
   }
 }

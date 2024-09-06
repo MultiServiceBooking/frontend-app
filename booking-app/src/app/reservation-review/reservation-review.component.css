@@ -1,0 +1,81 @@
+.container
+{
+    margin-left: 550px;
+}
+
+.user-banner {
+    background-color: #3f93a4; 
+    color: white;         
+    padding: 15px;         
+    font-size: 1.5rem;   
+    width: 100%;
+}
+
+.hotels-name
+{
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.question
+{
+    font-weight: bold;
+}
+
+.user-name
+{
+    margin-left: 535px;
+}
+
+.pictures {
+    margin-left: 380px;
+}
+
+.rating-image {
+    width: 150px; /* Postavi širinu svake slike */
+    height: 100px; /* Automatski odredi visinu */
+    cursor: pointer; /* Dodaj kursor na hover, kao za interaktivni element */
+    transition: transform 0.3s ease; /* Animacija za hover */
+    margin-left: 10px;
+}
+
+.rating-image:hover {
+    transform: scale(1.1); /* Povećaj sliku prilikom hovera */
+}
+
+.forma
+{
+    margin-left: 450px;
+    margin-top: 25px;
+}
+
+.input-field
+{
+    width: 500px;
+    height: 50px;
+    margin-top: 10px;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.review-button
+{
+  border-radius: 5px;
+  border-color: rgb(19, 153, 198);
+  padding: 8px;
+  color: rgb(19, 153, 198);
+  background-color: white;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.message
+{
+    font-size: 12px;
+}
+
+.rating-image.selected {
+    border: 2px solid #007bff; /* Primer: plavi okvir za izabranu sliku */
+    transform: scale(1.1);
+    filter: brightness(1.2); /* Povećaj svetlost izabrane slike */
+}
