@@ -112,6 +112,56 @@ html {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   padding: 20px;
   margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  height: 200px;
+  width: 700px;
+  margin-left: 100px;
+}
+
+.previous-image
+{
+  width: 30px;
+  height: 30px;
+  margin-top: 100px;
+}
+
+.review-heading
+{
+  margin-left: 100px;
+}
+
+.reviewed-on
+{
+  font-size: 15px;
+  margin-top: 20px;
+}
+
+.ne-znam
+{
+  margin: 1px;
+  padding: 2px;
+}
+
+.review-comment
+{
+  font-size: 25px;
+  font-weight: bold;
+  margin-bottom: 50px;
+}
+
+.smile-image
+{
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.bzvzz
+{
+  display: flex;
+  flex-direction: row;
 }
 
 .review-content {
@@ -124,32 +174,20 @@ html {
   display: flex;
   flex-direction: column;
   margin-left: 50px;
+  margin-right: 50px;
 }
 
 .user-review-details
 {
   display: flex;
   flex-direction: column;
+  margin-left: 50px;
 }
 
 .review-navigation {
-  display: flex;
-  justify-content: space-between;
+  margin-left: 100px;
 }
 
-.review-navigation button {
-  padding: 10px 20px;
-  font-size: 1rem;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.review-navigation button:hover {
-  background-color: #0056b3;
-}
 
 .navbar {
   position: fixed;
@@ -207,4 +245,97 @@ html {
 {
   margin-left: 415px;
   margin-top: 25px;
+}
+
+.facilities-heading
+{
+  margin-left: 400px;
+  font-size: 25px;
+}
+
+.facilities-heading2
+{
+  margin-left: 400px;
+  font-size: 20px;
+}
+
+.most-popular-facilities
+{
+  margin-left: 400px;
+  display: flex;
+  flex-direction: row;
+  width: 700px;
+  flex-wrap: wrap;
+}
+
+.most-popular-facilities p 
+{
+  margin-left: 5px;
+}
+
+.most-popular-facilities-rooms
+{
+  display: flex;
+  flex-direction: row;
+  width: 700px;
+  flex-wrap: wrap;
+}
+
+.most-popular-facilities-rooms p 
+{
+  margin-left: 5px;
+}
+
+.other-facilities-rooms
+{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.other-facilities-rooms li 
+{
+  margin-left: 5px;
+}
+
+.other-facilities
+{
+  display: flex;
+  flex-direction: row;
+  width: 900px;
+  flex-wrap: wrap;
+  margin-left: 400px;
+}
+
+ul {
+  list-style-type: none; /* Uklanja standardne kružiće */
+  padding-left: 0;
+}
+
+.facility-icon {
+  width: 16px; /* Veličina ikone */
+  height: 16px;
+  margin-right: 8px; /* Razmak između slike i teksta */
+  vertical-align: middle; /* Poravnanje ikone sa tekstom */
+}
+
+.other1
+{
+  display: flex;
+  flex-direction: column;
+  margin-left: 25px;
+}
+
+.other2
+{
+  display: flex;
+  flex-direction: column;
+  margin-left: 25px;
+}
+
+.other3
+{
+  display: flex;
+  flex-direction: column;
+  margin-left: 25px;
 }

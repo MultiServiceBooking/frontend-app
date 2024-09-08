@@ -1,0 +1,81 @@
+<img class="image1" src="assets/reservation-details.png">
+<div class="container">
+    <div class="left-container" *ngIf="hotel && room">
+        <div class="hotel-card">
+            <img class="hotel-image1" [src]="hotel.images[0]" alt="Hotel Image">
+            <h5 class="card-title">{{ hotel.name }}<img *ngFor="let star of getStars(hotel.starRating)" [src]="star" alt="Star" class="star-image"></h5>
+                
+                {{ hotel.address}}<br>
+                {{ room.roomType}} ROOM 
+        </div>
+        <div class="booking-details-card">
+            <h5 class="card-title">Your booking details</h5>
+                <div class="check-in-check-out">
+                    <div class="check-in">
+                        <p>Check-in </p>
+                        <p><strong>{{ formatDate(startDate) }}</strong></p>
+                    </div>
+                    <div class="check-out">
+                        <p>Check-out</p>
+                        <p><strong>{{ formatDate(endDate) }}</strong></p>
+                    </div>
+                </div>
+                <p>Total length of stay: {{ getNumberOfNights(startDate, endDate) }} nights</p>
+                <p>You selected 1 room for {{ guestCount }} adults</p>
+                <p>Total price: {{ getNumberOfNights(startDate,endDate)*room.price }} $</p>
+        </div>
+    </div>
+    <div class="right-container">
+        <div class="user-details-card">
+            <h5 class="user-heading">Enter your details</h5>
+            <div class="almost-done-card">
+                <p>Almost done! Just fill in the * required info</p>
+            </div>
+            <div class="inputs" *ngIf="user">
+                <div class="inputs2">
+                    <label>First name *</label>
+                    <input type="firstname" name="password" [(ngModel)]="user.name" required>
+                </div>
+                <div class="inputs2">
+                    <label>Last name *</label>
+                    <input type="firstname" name="password" [(ngModel)]="user.surname" required>
+                </div>
+                <div class="inputs2">
+                    <label>Email address *</label>
+                    <input type="firstname" name="password" [(ngModel)]="user.email" required>
+                </div>
+                <div class="inputs2">
+                    <label>Phone number *</label>
+                    <input type="firstname" name="password" [(ngModel)]="user.phoneNumber" required>
+                </div>
+            </div>
+            <p class="rgheading"><strong>Who are you booking for? </strong> (optional)</p>
+            <div class="radio-group">
+                
+                <input type="radio" id="main-guest" name="guest" value="main" checked>
+                <label for="main-guest">I am the main guest</label><br>
+                
+                <input type="radio" id="someone-else" name="guest" value="someone-else">
+                <label for="someone-else">Booking is for someone else</label>
+            </div>
+            <p class="rgheading"><strong>Are you travelling for work? </strong> (optional)</p>
+            <div class="radio-group">
+                
+                <input type="radio" id="main-guest" name="guest" value="main" checked>
+                <label for="main-guest">Yes</label><br>
+                
+                <input type="radio" id="someone-else" name="guest" value="someone-else">
+                <label for="someone-else">No</label>
+            </div>        
+        </div>
+        <div class="special-requests-card">
+            <h5>Special requests</h5>
+            <p>Special requests cannot be guaranteed – but the property will do its best to meet your needs. You can always make a special request after your booking is complete!</p>
+            <p><strong>Please write your requests in English or Serbian. </strong>(optional)</p><br>
+            <input type="text">
+        </div>
+        <button class="search-button" (click)="redirectToNextFinalDetails()">
+            Next: Final details
+        </button>
+    </div>
+</div>

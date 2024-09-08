@@ -10,14 +10,10 @@
       <div id="overview" class="overview">
         <div class="card" *ngIf="hotel">
           <div class="card-body">
-            <img class="images" [src]="hotel.images[0]" alt="Hotel Image">
             <h5 class="card-title">{{ hotel.name }} <div class="star-rating">
               <img *ngFor="let star of getStars(hotel.starRating)" [src]="star" alt="Star">
             </div></h5>
             <p class="card-text">
-              <br>
-              {{ hotel.address }}<br>
-              {{ hotel.phoneNumber }} ,  {{ hotel.email }} <br>
             <img src="assets/location.png" class="location-image"> {{ hotel.address }} <br>
             <img src="assets/phone.png" class="location-image"> {{ hotel.phoneNumber }} <br>
             <img src="assets/email.png" class="location-image"> {{ hotel.email }} <br><br>
@@ -59,12 +55,35 @@
           <div *ngFor="let room of rooms" class="mb-4">
             <div class="card">
               <div class="card-body">
-                <img class="images" [src]="room.images[0]" alt="Room Image">
+                <img class="hotel-image1" [src]="room.images[0]" alt="Room Image">
                 <h5 class="card-title">{{ room.roomType }}</h5>
                 <p class="card-text">
                   {{ room.description }} <br>
-                  {{ room.price }}$ per night <button class="reserve-button" (click)="createReservation(room.id)">Reserve</button><br>
+                  {{ room.price }}$ per night <button class="reserve-button" (click)="createReservation(room.id)">I'll reserve</button><br>
                 </p>
+                <div *ngIf="roomFacilitiesMap.get(room.id)">
+                    <h4>Facilities</h4>
+                    <ul>
+                      <li *ngFor="let facility of roomFacilitiesMap.get(room.id)">
+                        <div class="most-popular-facilities-rooms">
+                          <p><img src="assets/roomsize.png" alt="icon" class="facility-icon">{{ facility.size}} m²</p>  
+                          <p *ngIf="facility.view"><img src="assets/view.png" alt="icon" class="facility-icon">View</p>
+                          <p *ngIf="facility.air_conditioning"><img src="assets/airconditioning.png" alt="icon" class="facility-icon">Air conditioning</p>
+                          <p *ngIf="facility.ensuite_bathroom"><img src="assets/ensuitebathroom.png" alt="icon" class="facility-icon">Ensuite bathroom</p>
+                          <p *ngIf="facility.soundproofing"><img src="assets/soundproofing.png" alt="icon" class="facility-icon">Soundproofing</p>
+                          <p *ngIf="facility.minibar"><img src="assets/bar.png" alt="icon" class="facility-icon">Minibar</p>
+                          <p *ngIf="facility.free_wifi"><img src="assets/wifi.png" alt="icon" class="facility-icon">Free WiFi</p>
+                      </div>
+                      <ul>
+                        <div class="other-facilities-rooms">
+                        <li *ngFor="let item of facility.other_facilities?.split(', ')">
+                          <img src="assets/correct.png" alt="icon" class="facility-icon">{{ item }}
+                        </li>
+                        </div>
+                      </ul>
+                      </li>
+                    </ul>
+                  </div>
               </div>
             </div>
           </div>
@@ -72,22 +91,101 @@
       </div>
   
     <div id="facilities" class="section facilities">
-      <p>facilities</p>
+        <h3 class="facilities-heading">Facilities of {{ hotel?.name }} </h3>
+        <h2 class="facilities-heading2">Most popular facilities</h2>
+        <div *ngFor="let facility of facilities">
+        <div class="most-popular-facilities">
+            <p *ngIf="facility.smoking_rooms"><img src="assets/no-smoking.png" alt="icon" class="facility-icon">Non-smoking rooms</p>  
+            <p *ngIf="facility.disabled_guests"><img src="assets/disabled.png" alt="icon" class="facility-icon">Facilities for disabled guests</p>
+            <p *ngIf="facility.free_parking"><img src="assets/parking.png" alt="icon" class="facility-icon">Free parking</p>
+            <p *ngIf="facility.free_wifi"><img src="assets/wifi.png" alt="icon" class="facility-icon">Free WiFi</p>
+            <p *ngIf="facility.fitness_centre"><img src="assets/gym.png" alt="icon" class="facility-icon">Fitness centre</p>
+            <p *ngIf="facility.airport_shuttle"><img src="assets/shuttle.png" alt="icon" class="facility-icon">Airport shuttle</p>
+            <p *ngIf="facility.bar"><img src="assets/bar.png" alt="icon" class="facility-icon">Bar</p>
+            <p *ngIf="facility.breakfast"><img src="assets/breakfast.png" alt="icon" class="facility-icon">Fabulous breakfast</p>
+        </div>
+        <div class="other-facilities">
+            <div class="other1">
+              <h2>Bathroom</h2>
+              <ul>
+                <li *ngFor="let item of facility.bathroom?.split(', ')">
+                  <img src="assets/correct.png" alt="icon" class="facility-icon">{{ item }}
+                </li>
+              </ul>
+              <h2>Bedroom</h2>
+              <ul>
+                <li *ngFor="let item of facility.bedroom?.split(', ')">
+                  <img src="assets/correct.png" alt="icon" class="facility-icon">{{ item }}
+                </li>
+              </ul>
+            </div>
+      
+            <div class="other2">
+              <h2>Media & Technology</h2>
+              <ul>
+                <li *ngFor="let item of facility.media_and_technology?.split(', ')">
+                  <img src="assets/correct.png" alt="icon" class="facility-icon">{{ item }}
+                </li>
+              </ul>
+              <h2>Food & Drink</h2>
+              <ul>
+                <li *ngFor="let item of facility.food_and_drink?.split(', ')">
+                  <img src="assets/correct.png" alt="icon" class="facility-icon">{{ item }}
+                </li>
+              </ul>
+              <h2>Parking</h2>
+              <ul>
+                <li *ngFor="let item of facility.parking?.split(', ')">
+                  <img src="assets/correct.png" alt="icon" class="facility-icon">{{ item }}
+                </li>
+              </ul>
+            </div>
+      
+            <div class="other3">
+              <h2>Safety & Security</h2>
+              <ul>
+                <li *ngFor="let item of facility.safety?.split(', ')">
+                  <img src="assets/correct.png" alt="icon" class="facility-icon">{{ item }}
+                </li>
+              </ul>
+              <h2>General</h2>
+              <ul>
+                <li *ngFor="let item of facility.general?.split(', ')">
+                  <img src="assets/correct.png" alt="icon" class="facility-icon">{{ item }}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
     </div>
   
   <div id="reviews">
-    <h3>Reviews</h3>
+    <h3 class="review-heading">Guest reviews</h3>
     <div class="review-card" *ngIf="reviews.length > 0">
+        <img src="assets/previous.png" class="previous-image" (click)="showPreviousReview()">
+        <div class="user-review-details">
+            <p>{{ getUserById(reviews[currentReviewIndex].user_id)?.name || 'Unknown name' }}
+            {{ getUserById(reviews[currentReviewIndex].user_id)?.surname || 'Unknown user surname' }}</p>
+            
+        </div>
       <div class="review-content">
+        <div class="ne-znam">
+        <p class="reviewed-on">Reviewed: {{ formatDate(reviews[currentReviewIndex].reviewDate)  }}</p>
+        <p class="review-comment">{{ reviews[currentReviewIndex].comment || 'No comment provided' }}</p>
+        </div>
+        <div class="bzvzz">
+            <img src="assets/happy.png" class="smile-image">  {{ reviews[currentReviewIndex].good_comment || 'No good comment provided' }}<br>
+        </div>
+        <div class="bzvzz">
+            <img src="assets/sad.png" class="smile-image">   {{ reviews[currentReviewIndex].bad_comment || 'No bad comment provided' }}
+        </div>
+      </div>
+      <div>
+        
         <p><strong>Rating:</strong> {{ reviews[currentReviewIndex].rating }}</p>
-        <p><strong>Comment:</strong> {{ reviews[currentReviewIndex].comment || 'No comment provided' }}</p>
-        <p><strong>Good Comment:</strong> {{ reviews[currentReviewIndex].good_comment || 'No good comment provided' }}</p>
-        <p><strong>Bad Comment:</strong> {{ reviews[currentReviewIndex].bad_comment || 'No bad comment provided' }}</p>
-        <p><strong>Date:</strong> {{ reviews[currentReviewIndex].reviewDate | date:'shortDate' }}</p>
       </div>
       <div class="review-navigation">
-        <button (click)="showPreviousReview()">Previous</button>
-        <button (click)="showNextReview()">Next</button>
+        <img src="assets/next.png" class="previous-image" (click)="showNextReview()">
       </div>
     </div>
   </div>

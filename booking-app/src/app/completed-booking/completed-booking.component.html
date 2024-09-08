@@ -1,0 +1,36 @@
+<div class="heading">
+    <h5><img src="assets/correct.png"><strong class="h55">Booking completed!</strong></h5>
+</div>
+<div class="small-heading" *ngIf="user">
+    <p>We've sent a booking confirmation and invoice to <strong>{{ user.email }}.</strong></p>
+</div>
+<div class="booking-card">
+    <div class="hotel-informations-booking" *ngIf="hotel">
+        <div>
+            <h3>{{ hotel.name }}</h3>
+            {{ hotel.address }}
+        </div>
+        <img class="hotel-image" [src]="hotel.images[0]">
+    </div><br>
+    <hr class="hr">
+    <div class="reservation-informations-booking">
+        <div class="check-in">
+            <h3>Check in from</h3>
+            <strong>{{ formatDate(startDate) }}</strong><br>
+        </div>
+        <div class="check-out">
+            <h3>Check out</h3>
+            <strong>{{ formatDate(endDate) }}</strong><br>
+        </div>
+    </div><br>
+    <hr class="hr">
+    <div class="total-price-informations" *ngIf="room">
+        <h4>Total</h4>
+        <p>{{ getNumberOfNights(startDate,endDate)*room.price }} $</p>
+    </div><br>
+    <hr class="hr">
+    <div class="last-informations">
+        <p><strong>Free cancellation within 48 hours</strong></p>
+        <p><strong>Prepayment and cancellation policy: Flexible</strong></p>
+    </div>
+</div>

@@ -1,0 +1,237 @@
+.image1
+{
+    margin-left: 150px;
+    width: 1200px;
+    height: 60px;
+}
+
+.container
+{
+    display: flex;
+    flex-direction: row;
+}
+
+.left-container
+{
+    display: flex;
+    flex-direction: column;
+    margin-left: 250px;
+}
+
+.right-container
+{
+    display: flex;
+    flex-direction: column;
+    width: 700px;
+}
+
+.hotel-card
+{
+    width: 300px;
+    height: 350px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 25px;
+    padding-left: 5px;
+}
+
+.booking-details-card
+{
+    width: 300px;
+    height: 300px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 25px;
+    padding-left: 5px;
+}
+
+
+.radio-group
+{
+    margin-left: 25px;
+}
+
+.rgheading
+{
+    margin-left: 25px;
+}
+
+.user-details-card
+{
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 25px;
+    padding-left: 5px;
+    margin-left: 25px;
+    height: 250px;
+}
+
+.card-inputs
+{
+    display: flex;
+    flex-direction: row;
+}
+
+.card-inputs input 
+{
+    width: 200px;
+    height: 20px;
+}
+
+.cards 
+{
+    margin-left: 20px;
+}
+
+.cvc
+{
+    margin-left: 20px;
+}
+
+.cards div
+{
+    margin-top: 7px;
+}
+
+.cards input 
+{
+    margin-top: 10px;
+    border-radius: 5px; 
+    border-color: grey;
+    border-width: 1px;
+    height: 30px;
+    padding: 5px;
+}
+
+.special-requests-card
+{
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 25px;
+    padding-left: 5px;
+    margin-left: 25px;
+    height: 420px;
+}
+
+.special-requests-card h5 
+{
+    margin-left: 10px;
+    font-size: 20px;
+}
+
+
+.inputs
+{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 25px;
+    margin-left: 10px;
+}
+
+.inputs2
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.inputs2 input 
+{
+    width: 300px; 
+    height: 30px;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+.inputs2 label 
+{
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.almost-done-card
+{
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(109, 98, 98, 0.2);
+    margin-top: 25px;
+    padding-left: 5px;
+    margin-left: 5px;
+    width: 650px;
+    height: 50px;
+    display: flex;
+    flex-direction: center;
+    background: lightgrey;
+}
+
+.user-heading
+{
+    font-size: 20px;
+    margin-left: 5px;
+}
+
+
+.check-in-check-out
+{
+    display: flex;
+    flex-direction: row;
+}
+
+.check-in
+{
+    margin-left: 15px;
+}
+
+.check-out 
+{
+    margin-left: 70px;
+}
+
+.card-title
+{
+    font-size: 25px;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+.star-image
+{
+    width: 30px;
+    height: 30px;
+    margin-left: 2px;
+}
+
+.hotel-image1 
+{
+    width: 280px;
+    height: 150px;
+    margin-left: 10px;
+    border-radius: 5px;
+}
+
+
+.search-button {
+    padding: 8px 16px;
+    font-size: 1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 500px;
+    margin-top: 30px;
+    width: 180px;
+    height: 50px;
+  }
+
+  .checkbox-group
+  {
+    width: 680px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 25px;
+    margin-top: 15px;
+  }
+  
+  .search-button:hover {
+    background-color: #0056b3;
+  }

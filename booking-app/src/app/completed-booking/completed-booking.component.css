@@ -1,0 +1,87 @@
+.heading 
+{
+    font-size: 30px;
+    margin-left: 590px; 
+    margin-top: 100px;
+}
+
+.heading h5 
+{
+    margin-left: 25px;
+}
+
+.h55 
+{
+    margin-left: 15px;
+}
+
+.heading img 
+{
+    margin-top: 10px;
+}
+
+.small-heading 
+{
+    margin-left: 520px;
+}
+
+.booking-card
+{
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 50px;
+    padding-left: 5px;
+    height: 420px;
+    margin-left: 500px;
+    width: 500px;
+}
+
+.hotel-informations-booking
+{
+    display: flex;
+    flex-direction: row;
+    margin-left: 25px;
+}
+
+.hotel-image
+{
+    width: 100px;
+    height: 70px;
+    margin-left: 150px;
+    margin-top: 20px;
+}
+
+.hr 
+{
+    color: blue;
+}
+
+.check-out
+{
+    margin-left: 150px;
+}
+
+.reservation-informations-booking
+{
+    display: flex;
+    flex-direction: row;
+    margin-left: 25px;
+}
+
+.total-price-informations
+{
+    display: flex;
+    flex-direction: row;
+    margin-left: 25px;
+}
+
+.total-price-informations p 
+{
+    margin-top: 25px;
+    margin-left: 300px;
+}
+
+.last-informations
+{
+    margin-left: 25px;
+}

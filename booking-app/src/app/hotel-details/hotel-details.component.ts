@@ -6,6 +6,10 @@ import { Room } from '../model/room.model';
 import { Hotel } from '../model/hotel.model';
 import { Review } from '../model/review.model';
 import { ReviewService } from '../services/review.service';
+import { AuthService } from '../services/auth.service';
+import { User } from '../model/user.model';
+import { HotelFacilities } from '../model/hotel-facilities.model';
+import { RoomFacilities } from '../model/room-facilities.model';
 
 @Component({
   selector: 'app-hotel-details',
@@ -21,12 +25,17 @@ export class HotelDetailsComponent implements OnInit{
   hotelId: number = 0;
   reviews: Review[] = [];
   currentReviewIndex: number = 0;
+  usersMap: Map<string, User> = new Map();
+  facilities: HotelFacilities[] = [];
+  roomFacilitiesMap: Map<number, RoomFacilities[]> = new Map();
 
 
   constructor(
     private route: ActivatedRoute,
     private hotelService: HotelService,
-    private reviewService: ReviewService
+    private reviewService: ReviewService,
+    private authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -37,6 +46,9 @@ export class HotelDetailsComponent implements OnInit{
         (rooms) => {
           this.rooms = rooms;
           console.log('Rooms:', JSON.stringify(rooms, null, 2));
+          this.rooms.forEach(room => {
+            this.getRoomFacilities(room.id);
+          });
         },
         (error) => {
           console.error('Error fetching hotel rooms:', error);
@@ -46,6 +58,7 @@ export class HotelDetailsComponent implements OnInit{
       this.hotelService.getHotelById(this.hotelId).subscribe(
         (hotel) => {
           this.hotel = hotel;
+          this.getFacilities(hotel.id);
           console.log('Hotel:', JSON.stringify(hotel, null, 2));
         },
         (error) => {
@@ -78,11 +91,52 @@ export class HotelDetailsComponent implements OnInit{
       (reviews) => {
         this.reviews = reviews;
         console.log('Hotel reviews:', JSON.stringify(reviews, null, 2));
+        this.reviews.forEach(review => {
+          this.authService.getUserById(review.user_id).subscribe(user => {
+            this.usersMap.set(review.user_id, user);
+          });
+        });
       },
       (error) => {
         console.error('Error fetching reviews:', error);
       }
     );
+  }
+
+  getRoomFacilities(roomId: number): void {
+    this.hotelService.getRoomFacilities(roomId).subscribe(
+      (facilities) => {
+        this.roomFacilitiesMap.set(roomId, facilities);
+        console.log(`Facilities for room ${roomId}:`, JSON.stringify(facilities, null, 2));
+      },
+      (error) => {
+        console.error(`Error fetching facilities for room ${roomId}:`, error);
+      }
+    );
+  }
+
+
+  getFacilities(hotelId: number): void
+  {
+    this.hotelService.getHotelFacilities(this.hotelId).subscribe(
+      (facilities) => {
+        this.facilities = facilities;
+        console.log('Facilities:', JSON.stringify(facilities, null, 2));
+      },
+      (error) => {
+        console.error('Error fetching hotel facilities:', error);
+      }
+    );
+  }
+
+  getUserById(userId: string): User | undefined {
+    return this.usersMap.get(userId);
+  }
+
+  formatDate(dateString: string): string {
+    const date = new Date(dateString);
+    const options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'short', year: 'numeric' };
+    return date.toLocaleDateString('en-GB', options);
   }
   
 
@@ -103,21 +157,35 @@ export class HotelDetailsComponent implements OnInit{
     for (let i = 0; i < rating; i++) {
       stars.push('assets/star-filled.png'); 
     }
-    for (let i = rating; i < 5; i++) {
+   /* for (let i = rating; i < 5; i++) {
       stars.push('assets/star-empty.png'); 
-    }
+    }*/
     return stars;
   }
 
   createReservation(roomId: number) {
-    this.hotelService.createReservation(roomId, this.startDate, this.endDate, this.guestCount).subscribe(
+    /*this.hotelService.createReservation(roomId, this.startDate, this.endDate, this.guestCount).subscribe(
       response => {
         console.log('Reservation created successfully:', response);
       },
       error => {
         console.error('Error creating reservation:', error);
       }
-    );
+    );*/
+    if(this.startDate === '' || this.endDate === '')
+    {
+      alert('Please select the dates.');
+    }
+    else if(this.guestCount === null )
+    {
+      alert('Please enter number of guests.');
+    }
+    else {this.router.navigate(['reservation-details'], { 
+      queryParams: { startDate: this.startDate, endDate: this.endDate, guestCount: this.guestCount,
+        hotelId: this.hotel?.id, roomId: roomId
+       } 
+    });
+  }
   }
 
   showPreviousReview(): void {

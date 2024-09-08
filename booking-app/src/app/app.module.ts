@@ -14,6 +14,9 @@ import { GuestReservationsComponent } from './guest-reservations/guest-reservati
 
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { ReservationReviewComponent } from './reservation-review/reservation-review.component';
+import { ReservationDetailsComponent } from './reservation-details/reservation-details.component';
+import { ReservationFinalDetailsComponent } from './reservation-final-details/reservation-final-details.component';
+import { CompletedBookingComponent } from './completed-booking/completed-booking.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,10 @@ import { ReservationReviewComponent } from './reservation-review/reservation-rev
     HotelDetailsComponent,
     RegisterComponent,
     GuestReservationsComponent,
-    ReservationReviewComponent
+    ReservationReviewComponent,
+    ReservationDetailsComponent,
+    ReservationFinalDetailsComponent,
+    CompletedBookingComponent
   ],
   imports: [
     BrowserModule,

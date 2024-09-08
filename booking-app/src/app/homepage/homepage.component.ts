@@ -36,9 +36,9 @@ export class HomepageComponent implements OnInit {
     for (let i = 0; i < rating; i++) {
       stars.push('assets/star-filled.png'); 
     }
-    for (let i = rating; i < 5; i++) {
+    /*for (let i = rating; i < 5; i++) {
       stars.push('assets/star-empty.png'); 
-    }
+    }*/
     return stars;
   }
 

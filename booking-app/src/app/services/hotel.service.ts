@@ -12,11 +12,20 @@ export class HotelService {
   private apiUrl = `${environment.apiHost}hotels`; 
   private searchUrl = `${environment.apiHost}rooms/search`;
   private reservationsUrl = `${environment.apiHost}reservations`;
+  private roomsUrl = `${environment.apiHost}rooms`;
 
   constructor(private http: HttpClient) { }
 
   getHotels(): Observable<any[]> {
     return this.http.get<any[]>(this.apiUrl);
+  }
+
+  getRoomFacilities(roomId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.roomsUrl}/facilities/${roomId}`);
+  }
+
+  getHotelFacilities(hotelId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/facilities/${hotelId}`);
   }
 
   getRoomsByHotelId(hotelId: number): Observable<Room[]> {
@@ -25,6 +34,10 @@ export class HotelService {
 
   getHotelById(hotelId: number): Observable<Hotel> {
     return this.http.get<Hotel>(`${this.apiUrl}/${hotelId}`);
+  }
+
+  getRoomById(roomId: number): Observable<Room> {
+    return this.http.get<Room>(`${this.roomsUrl}/${roomId}`);
   }
 
   getHotelByReservationId(reservationId: number): Observable<Hotel> {

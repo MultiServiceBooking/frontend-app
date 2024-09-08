@@ -7,6 +7,9 @@ import { HotelDetailsComponent } from './hotel-details/hotel-details.component';
 import { RegisterComponent } from './register/register.component';
 import { GuestReservationsComponent } from './guest-reservations/guest-reservations.component';
 import { ReservationReviewComponent } from './reservation-review/reservation-review.component';
+import { ReservationDetailsComponent } from './reservation-details/reservation-details.component';
+import { ReservationFinalDetailsComponent } from './reservation-final-details/reservation-final-details.component';
+import { CompletedBookingComponent } from './completed-booking/completed-booking.component';
 
 const routes: Routes = [
   { path: 'navbar', component: NavbarComponent},
@@ -15,7 +18,10 @@ const routes: Routes = [
   { path: 'hotel-details/:id', component: HotelDetailsComponent},
   { path: 'register', component: RegisterComponent},
   { path: 'reservations', component: GuestReservationsComponent},
-  { path: 'reservation-review/:hotelId/:reservationId', component: ReservationReviewComponent}
+  { path: 'reservation-review/:hotelId/:reservationId', component: ReservationReviewComponent},
+  { path: 'reservation-details', component: ReservationDetailsComponent},
+  { path: 'reservation-final-details', component: ReservationFinalDetailsComponent},
+  { path: 'completed-booking', component: CompletedBookingComponent}
 ];
 
 @NgModule({
