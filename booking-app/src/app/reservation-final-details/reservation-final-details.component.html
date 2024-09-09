@@ -45,18 +45,18 @@
             <div class="cards">
                 <div>
             <label><strong>Cardholder's Name *</strong></label><br>
-            <input type="text" placeholder="{{user.name}}  {{user.surname}}"><br></div>
+            <input type="text" placeholder="{{user.name}}  {{user.surname}}" [(ngModel)]="cardHolderName"><br></div>
             <div>
             <label><strong>Card Number *</strong></label><br>
-            <input type="text"></div>
+            <input type="text" [(ngModel)]="cardNumber"></div>
             <div class="card-inputs">
             <div>
             <label><strong>Expiry Date *</strong></label><br>
-            <input type="text" >
+            <input type="text" [(ngModel)]="expiryDate">
             </div>
             <div class="cvc">
             <label><strong>CVC *</strong></label><br>
-            <input type="text" >
+            <input type="text" [(ngModel)]="cvc">
             </div>
             <div>
                 </div>

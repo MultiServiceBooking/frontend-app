@@ -6,6 +6,9 @@ import { Room } from '../model/room.model';
 import { User } from '../model/user.model';
 import { AuthService } from '../services/auth.service';
 import { HotelService } from '../services/hotel.service';
+import { Reservation } from '../model/reservation.model';
+import { Payment, PaymentStatus, PaymentMethod} from '../model/payment.model';
+import { ReservationService } from '../services/reservation.service';
 
 @Component({
   selector: 'app-reservation-final-details',
@@ -22,8 +25,15 @@ export class ReservationFinalDetailsComponent implements OnInit{
   user?: User;
   room?: Room;
   showcard: boolean = false;
+  newReservation?: Reservation;
+  roomPrice: number = 0;
+  cardHolderName: string = '';
+  cardNumber: string = '';
+  expiryDate: string = '';
+  cvc: string = '';
 
-  constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService, private hotelService: HotelService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService, 
+    private reservationService: ReservationService, private hotelService: HotelService) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
@@ -75,6 +85,7 @@ export class ReservationFinalDetailsComponent implements OnInit{
     this.hotelService.getRoomById(this.roomId).subscribe(
       (room) => {
         this.room = room;
+        this.roomPrice = this.room.price;
         console.log('Room:', JSON.stringify(room, null, 2));
       },
       (error) => {
@@ -117,11 +128,57 @@ export class ReservationFinalDetailsComponent implements OnInit{
     }
   }
 
-  redirectToNextFinalDetails(): void 
-  {
-    this.router.navigate(['completed-booking'], { 
-      queryParams: { startDate: this.startDate, endDate: this.endDate, guestCount: this.guestCount,
-        hotelId: this.hotel?.id, roomId: this.room?.id
-       }}); 
+  generateConfirmationNumber(): string {
+    return 'CONF-' + Math.random().toString(36).substr(2, 9).toUpperCase();
   }
+
+  redirectToNextFinalDetails(): void {
+    if(this.user && this.room && this.room.price) {
+      this.hotelService.createReservation(this.roomId, this.startDate, this.endDate, this.guestCount, this.user.id).subscribe(
+        (reservation: Reservation) => {
+          this.newReservation = reservation;  
+          console.log('Reservation created successfully:', this.newReservation);
+          
+          const amount = this.roomPrice * this.getNumberOfNights(this.startDate, this.endDate);
+          const lastFourDigits = this.cardNumber.slice(-4);
+          
+          const payment = new Payment(
+            0, 
+            '',
+            amount,
+            PaymentStatus.PENDING,
+            this.newReservation.id,
+            this.showcard ? PaymentMethod.CREDIT_CARD : PaymentMethod.PAYPAL, 
+            'USD', 
+            this.generateConfirmationNumber(), 
+            this.showcard ? lastFourDigits : '', 
+          );
+
+          console.log('New payment: ' + JSON.stringify(payment, null, 2));
+
+          this.reservationService.createPayment(payment, this.newReservation.id.toString()).subscribe(
+            (payment: Payment) => {
+              console.log('Payment created successfully:', payment);
+              /*this.router.navigate(['completed-booking'], { 
+                queryParams: { 
+                  startDate: this.startDate, 
+                  endDate: this.endDate, 
+                  guestCount: this.guestCount,
+                  hotelId: this.hotel?.id, 
+                  roomId: this.room?.id 
+                }
+              });*/
+            },
+            error => {
+              console.error('Error creating payment:', error);
+            }
+          );
+        },
+        error => {
+          console.error('Error creating reservation:', error);
+        }
+      );
+    }
+  }
+
 } 

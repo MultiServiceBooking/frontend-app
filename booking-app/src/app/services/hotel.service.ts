@@ -48,12 +48,13 @@ export class HotelService {
     return this.http.get<Room[]>(`${this.searchUrl}?guestCount=${guestCount}&startDate=${startDate}&endDate=${endDate}&hotelId=${hotelId}`);
   }
 
-  createReservation(roomId: number, startDate: string, endDate: string, guestCount: number): Observable<any> {
+  createReservation(roomId: number, startDate: string, endDate: string, guestCount: number, userId: number): Observable<any> {
     const params = new HttpParams()
       .set('roomId', roomId.toString())
       .set('startDate', startDate)
       .set('endDate', endDate)
-      .set('guestCount', guestCount.toString());
+      .set('guestCount', guestCount.toString())
+      .set('userId', userId.toString());
 
     return this.http.post<any>(`${this.reservationsUrl}/create`, null, { params });
   }
