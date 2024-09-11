@@ -1,0 +1,52 @@
+<div class="container">
+    <div class="card">
+        <div class="heading">
+            <h2>Personal details</h2>
+            <p>Update your informations</p>
+        </div>
+        <div class="inputs" *ngIf="user">
+            <div>
+                <label><strong>Your name</strong></label><br>
+                <input type="text" [(ngModel)]="user.name">
+            </div>
+            <div>
+                <label><strong>Your surname</strong></label><br>
+                <input type="text" [(ngModel)]="user.surname">
+            </div>
+            <div>
+                <label><strong>Your email</strong></label><br>
+                <input type="text" [(ngModel)]="user.email">
+            </div>
+            <div>
+                <label><strong>Your phone number</strong></label><br>
+                <input type="text" [(ngModel)]="user.phoneNumber">
+            </div>
+            <div class="buttons">
+                <button class="search-button" (click)="showChange()">
+                    Change password
+                </button>
+                <button class="update-button" (click)="updateUser()">
+                    Update account
+                </button>
+            </div>
+            <div class="changePassword" *ngIf="showChangePassword">
+                <div>
+                    <label><strong>Enter your password</strong></label><br>
+                    <input type="password" [(ngModel)]="oldPassword">
+                </div>
+                <div>
+                    <label><strong>Enter new password</strong></label><br>
+                    <input type="password" [(ngModel)]="newPassword">
+                </div>
+                <div>
+                    <label><strong>Confirm new password</strong></label><br>
+                    <input type="password" [(ngModel)]="confirmPassword">
+                </div>
+                <p class="errorMessage">{{ errorMessage }}</p>
+                <button class="update-button" (click)="changePassword()">
+                    Change password
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

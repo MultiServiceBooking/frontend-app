@@ -9,6 +9,15 @@ button {
     font-size: 16px;
     transition: background-color 0.3s ease; /* Add a smooth transition on hover */
   }
+
+  .site-name
+  {
+    margin-right: 800px;
+    color: #fff;
+    background-color: #2c3e50;
+    font-size: 18px; /* Increase font size for register button */
+    font-weight: 550;
+  }
   
   /* Hover effect */
   button:hover {

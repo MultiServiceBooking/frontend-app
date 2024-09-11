@@ -9,6 +9,8 @@ import { HotelService } from '../services/hotel.service';
 import { Reservation } from '../model/reservation.model';
 import { Payment, PaymentStatus, PaymentMethod} from '../model/payment.model';
 import { ReservationService } from '../services/reservation.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ReservationPaymentDocument } from '../model/reservation-payment-document.model';
 
 @Component({
   selector: 'app-reservation-final-details',
@@ -31,9 +33,20 @@ export class ReservationFinalDetailsComponent implements OnInit{
   cardNumber: string = '';
   expiryDate: string = '';
   cvc: string = '';
+  creditCardForm: FormGroup;
+  newPayment?: Payment;
+  newDocument?: ReservationPaymentDocument;
 
   constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService, 
-    private reservationService: ReservationService, private hotelService: HotelService) { }
+    private reservationService: ReservationService, private hotelService: HotelService, private fb: FormBuilder) 
+    {
+      this.creditCardForm = this.fb.group({
+        cardHolderName: [{ value: '', disabled: true }, Validators.required],
+        cardNumber: ['', [Validators.required, Validators.pattern(/^\d{4} \d{4} \d{4} \d{4}$/)]],
+        expiryDate: ['', [Validators.required, Validators.pattern(/^(0[1-9]|1[0-2])\/\d{2}$/)]],
+        cvc: ['', [Validators.required, Validators.pattern(/^\d{3}$/)]]
+      });
+     }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
@@ -56,6 +69,7 @@ export class ReservationFinalDetailsComponent implements OnInit{
     this.authService.getLoggedUser().subscribe({
       next: (user: User) => {
         this.user = user;
+        this.cardHolderName = this.user.name + ' ' + this.user.surname;
         console.log("Logged user:");
         console.log(user);
         this.loadHotel();
@@ -158,16 +172,58 @@ export class ReservationFinalDetailsComponent implements OnInit{
 
           this.reservationService.createPayment(payment, this.newReservation.id.toString()).subscribe(
             (payment: Payment) => {
+              this.newPayment = payment;
               console.log('Payment created successfully:', payment);
-              /*this.router.navigate(['completed-booking'], { 
-                queryParams: { 
-                  startDate: this.startDate, 
-                  endDate: this.endDate, 
+              if ( this.newReservation && this.user )
+              {
+                const document: ReservationPaymentDocument = {
+                  reservationId: this.newReservation?.id,
+                  paymentId: this.newPayment.id,
+                  reservationStartDate: this.startDate,
+                  reservationEndDate: this.endDate,
+                  reservationDate: this.newReservation.reservationDate,
                   guestCount: this.guestCount,
-                  hotelId: this.hotel?.id, 
-                  roomId: this.room?.id 
-                }
-              });*/
+                  reservationStatus: this.newReservation.reservationStatus,
+                  userName: this.user?.name + ' ' + this.user.surname,
+                  roomDetails: 'Room with sea view',
+                  paymentAmount: this.newPayment.amount,
+                  paymentStatus: this.newPayment.paymentStatus,
+                  paymentMethod: this.newPayment.paymentMethod,
+                  currency: this.newPayment.currency,
+                  confirmationNumber: this.newPayment.confirmationNumber,
+                  cardLastFourDigits: this.newPayment.cardLastFourDigits
+                };
+            
+                this.reservationService.createReservationPaymentDocument(document).subscribe(
+                  (document: ReservationPaymentDocument) => {
+                    this.newDocument = document;
+                    console.log('Document created successfully:', this.newDocument);
+                    if (this.newDocument && this.user) {
+                      this.reservationService.sendDocument(this.user.email, this.newDocument.id || '').subscribe(
+                        response => {
+                          console.log('Document sent successfully:', response);
+                          
+                        },
+                        error => {
+                          console.error('Error sending document:', error);
+                        }
+                      );
+                    }
+                    this.router.navigate(['completed-booking'], { 
+                        queryParams: { 
+                          startDate: this.startDate, 
+                          endDate: this.endDate, 
+                          guestCount: this.guestCount,
+                          hotelId: this.hotel?.id, 
+                          roomId: this.room?.id 
+                        }
+                      });
+                  },
+                  error => {
+                    console.error('Error creating document:', error);
+                  }
+                );
+              }
             },
             error => {
               console.error('Error creating payment:', error);

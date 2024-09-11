@@ -44,6 +44,10 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/reservations']);
   }
 
+  redirectToManageAccount() {
+    this.router.navigate(['/user-account']);
+  }
+
   isLoggedUser(): boolean {
     const userJson = localStorage.getItem('loggedUser');
     return userJson !== null; 

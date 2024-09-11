@@ -17,6 +17,7 @@ import { ReservationReviewComponent } from './reservation-review/reservation-rev
 import { ReservationDetailsComponent } from './reservation-details/reservation-details.component';
 import { ReservationFinalDetailsComponent } from './reservation-final-details/reservation-final-details.component';
 import { CompletedBookingComponent } from './completed-booking/completed-booking.component';
+import { UserAccountComponent } from './user-account/user-account.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { CompletedBookingComponent } from './completed-booking/completed-booking
     ReservationReviewComponent,
     ReservationDetailsComponent,
     ReservationFinalDetailsComponent,
-    CompletedBookingComponent
+    CompletedBookingComponent,
+    UserAccountComponent
   ],
   imports: [
     BrowserModule,
