@@ -23,7 +23,9 @@ export class LoginComponent {
       next: (response) => {
         if (response.message === 'Login successful') { 
           localStorage.setItem('loggedUser', JSON.stringify({ username: this.username, password: this.password }));
-          this.router.navigate(['/']); 
+          this.router.navigate(['/']).then(() => {
+            window.location.reload(); 
+          });
         } else {
           this.errorMessage = response.error.error;
         }

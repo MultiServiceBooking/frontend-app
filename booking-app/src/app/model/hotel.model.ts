@@ -7,5 +7,7 @@ export interface Hotel {
     email: string;
     images: string[];
     description: string;
+    checkin: string;
+    checkout: string;
   }
   

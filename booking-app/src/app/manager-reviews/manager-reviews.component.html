@@ -1,0 +1,24 @@
+<div class="container">
+    <h2 class="heading">Manage hotel reviews</h2>
+    <div *ngFor="let review of reviews">
+        <h3>Review from {{ getUserById(review.user_id)?.name || 'Unknown name' }}
+            {{ getUserById(review.user_id)?.surname || 'Unknown user surname' }}</h3>
+        <p>Reviewed: {{ formatDate(review.reviewDate)  }}</p>
+        <div class="card">
+            <div class="card-details">
+                <p class="hotelTitle">{{ review.comment }}, rating: {{ review.rating }} </p>
+                <div class="bzvzz">
+                    <img src="assets/happy.png" class="smile-image">  {{ review.good_comment || 'No good comment provided' }}<br>
+                </div>
+                <div class="bzvzz">
+                    <img src="assets/sad.png" class="smile-image">   {{ review.bad_comment || 'No bad comment provided' }}
+                </div>
+            </div>
+            <div class="card-details2">
+                <button class="review-button" (click)="acceptReview(review.id || '')">Accept</button>
+                <button class="review-button" (click)="rejectReview(review.id || '')">Reject</button>
+            </div>
+        </div>
+      </div> 
+    </div>
+  

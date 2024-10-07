@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { Room } from '../model/room.model';
 import { Hotel } from '../model/hotel.model';
-import { Review } from '../model/review.model';
+import { Review, ReviewStatus } from '../model/review.model';
 import { ReviewService } from '../services/review.service';
 import { AuthService } from '../services/auth.service';
 import { User } from '../model/user.model';
@@ -90,6 +90,18 @@ export class HotelDetailsComponent implements OnInit{
     this.reviewService.getHotelReviews(this.hotelId.toString()).subscribe(
       (reviews) => {
         this.reviews = reviews;
+        let filteredReviews: Review[] = [];
+        reviews.forEach((review: Review) => {
+          console.log("usao u filtriranje");
+          console.log(review.reviewStatus);
+          if (review.reviewStatus !== 'PENDING') {
+            filteredReviews.push(review);
+          }
+        });
+
+        this.reviews = filteredReviews;
+
+        
         console.log('Hotel reviews:', JSON.stringify(reviews, null, 2));
         this.reviews.forEach(review => {
           this.authService.getUserById(review.user_id).subscribe(user => {

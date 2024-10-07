@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { User } from '../model/user.model';
+import { User, UserRole } from '../model/user.model';
 
 @Component({
   selector: 'app-navbar',
@@ -17,6 +17,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void{
     this.authService.getLoggedUser().subscribe({
       next: (user: User) => {
+        this.user = user;
         console.log("Logged user:");
         console.log(user);
       },
@@ -48,10 +49,25 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/user-account']);
   }
 
+  redirectToHomepage() {
+    this.router.navigate(['/']);
+  }
+
   isLoggedUser(): boolean {
     const userJson = localStorage.getItem('loggedUser');
     return userJson !== null; 
   }
-  
 
+  isGuest(): boolean {
+    return this.user?.role === UserRole.GUEST;
+  }
+
+  isMarketingManager(): boolean {
+    return this.user?.role === UserRole.MARKETING_MANAGER;
+  }
+
+  
+  redirectToReviews(): void {
+    this.router.navigate(['/manager-reviews']);
+  }
 }

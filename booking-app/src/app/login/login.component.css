@@ -8,6 +8,13 @@
     font-family: "Open Sans", sans-serif;
 }
 
+.container
+{
+    width: 600px;
+    margin-left: 430px;
+    margin-top: 25px;
+}
+
 body {
     height: 100vh;
     width: 100%;
@@ -156,7 +163,7 @@ header {
 }
 
 .form-box .form-details {
-    width: 100%;
+    width: 50%;
     color: black;
     max-width: 330px;
     text-align: center;
@@ -363,5 +370,5 @@ form button:hover {
     padding: 10px;
     text-align: center;
     color: red;
-    margin-left: 180px;
+    margin-left: 25px;
 }

@@ -20,4 +20,9 @@ export class ReviewService {
   getHotelReviews(hotelId: string): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/hotel/` + hotelId);
   }
+
+  updateReviewStatus(reviewId: string, status: string): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/${reviewId}/${status}`, null);
+  }
+
 }

@@ -1,3 +1,9 @@
+export enum ReviewStatus {
+  PENDING = 'PENDING',
+  ACCEPTED = 'ACCEPTED',
+  REJECTED = 'REJECTED'
+}
+
 export interface Review {
     id?: string; 
     rating: number;
@@ -8,5 +14,6 @@ export interface Review {
     user_id: string;
     reservation_id: string;
     hotel_id: string;
+    reviewStatus: ReviewStatus;
   }
   

@@ -2,20 +2,52 @@
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     /* Podesi širinu kartice */
-    width: 400px;
+    width: 350px;
     /* Osiguraj da kartice koriste ceo raspoloživi prostor unutar kolone */
     margin-bottom: 20px;
-    margin-left: 30px;
+    margin-left: 10px;
+    height: 280px;
+  }
+
+  .filter-card {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 500px;
+    margin-left: 10px;
+    height: 580px;
+  }
+
+  .filter-option label 
+  {
+    margin-left: 5px;
+  }
+  
+  .filter-option input 
+  {
+    border-radius: 10px;
+  }
+
+  .filter-option
+  {
+    margin-top: 5px;
+  }
+
+  .location-image
+  {
+    height: 15px;
+    width: 15px; 
+    margin-right: 5px;
   }
 
   .images{
-    width: 400px;
-    height: 250px;
+    width: 350px;
+    height: 180px;
   }
   
   .card-title {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
+
   
   .card-text {
     font-size: 1rem;
@@ -23,11 +55,23 @@
   
   .container {
     margin-top: 20px;
+    display: flex;
+    flex-direction: row;
   }
   
   .row {
     display: flex;
     flex-wrap: wrap; /* Omogućava prelamanje kartica u novi red kad ne stanu */
+    margin-left: 10px;
+  }
+
+
+
+  .star-img
+  {
+    width: 20px;
+    height: 20px;
+    margin-left: 3px;
   }
   
   .col-sm-4 {
@@ -57,7 +101,7 @@
     align-items: center;
     gap: 10px; /* Razmak između input polja i dugmeta */
     margin: 20px 0; /* Razmak od vrha i dna */
-    margin-left: 350px;
+    margin-left: 300px;
   }
   
   .search-input {

@@ -3,21 +3,24 @@
     <div class="left-container" *ngIf="hotel && room">
         <div class="hotel-card">
             <img class="hotel-image1" [src]="hotel.images[0]" alt="Hotel Image">
-            <h5 class="card-title">{{ hotel.name }}<img *ngFor="let star of getStars(hotel.starRating)" [src]="star" alt="Star" class="star-image"></h5>
+            <b class="card-title">{{ hotel.name }}<img *ngFor="let star of getStars(hotel.starRating)" [src]="star" alt="Star" class="star-image"></b><br><br>
                 
-                {{ hotel.address}}<br>
+                <div class="gluposti">{{ hotel.address}}<br>
                 {{ room.roomType}} ROOM 
+                </div>
         </div>
         <div class="booking-details-card">
-            <h5 class="card-title">Your booking details</h5>
+            <b class="card-title">Your booking details</b>
                 <div class="check-in-check-out">
                     <div class="check-in">
                         <p>Check-in </p>
                         <p><strong>{{ formatDate(startDate) }}</strong></p>
+                        <p>{{ hotel.checkin }}</p>
                     </div>
                     <div class="check-out">
                         <p>Check-out</p>
                         <p><strong>{{ formatDate(endDate) }}</strong></p>
+                        <p>{{ hotel.checkout }}</p>
                     </div>
                 </div>
                 <p>Total length of stay: {{ getNumberOfNights(startDate, endDate) }} nights</p>
@@ -36,7 +39,7 @@
                 
                 <input type="radio" id="pay-now" name="guest" value="pay-now" (change)="onPaymentChange('pay-now')">
                 <label for="pay-now">Pay now</label><br>
-                <p>You'll pay with Booking.com when you complete this booking.</p>
+                <p>You'll pay with BookAway.com when you complete this booking.</p>
             </div>     
         </div>
         <div class="special-requests-card" *ngIf="user && showcard">
@@ -66,10 +69,10 @@
 </div>
 <div class="checkbox-group">
     <label>
-        <input type="checkbox"checked> I consent to receiving marketing emails from Booking.com, including promotions, personalised recommendations, rewards, travel experiences and updates about Booking.com’s products and services.
+        <input type="checkbox"checked> I consent to receiving marketing emails from BookAway.com, including promotions, personalised recommendations, rewards, travel experiences and updates about BookAway.com’s products and services.
     </label><br>
     <label>
-        <input type="checkbox"> I consent to receiving marketing emails from Booking.com, including promotions, personalised recommendations, rewards, travel experiences and updates about Booking.com Transport Limited’s products and services.
+        <input type="checkbox"> I consent to receiving marketing emails from BookAway.com, including promotions, personalised recommendations, rewards, travel experiences and updates about BookAway.com Transport Limited’s products and services.
     </label>
     <button class="search-button" (click)="redirectToNextFinalDetails()">
         Complete booking

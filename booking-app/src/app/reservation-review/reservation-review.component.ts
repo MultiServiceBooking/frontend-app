@@ -7,7 +7,7 @@ import { Reservation } from '../model/reservation.model';
 import { User } from '../model/user.model';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import { Review } from '../model/review.model';
+import { Review, ReviewStatus } from '../model/review.model';
 import { ReviewService } from '../services/review.service';
 
 @Component({
@@ -26,7 +26,8 @@ export class ReservationReviewComponent implements OnInit{
     reviewDate: new Date().toISOString(), 
     user_id: '',
     reservation_id: '',
-    hotel_id: ''
+    hotel_id: '',
+    reviewStatus: ReviewStatus.PENDING
   };
   constructor(
     private router: Router,

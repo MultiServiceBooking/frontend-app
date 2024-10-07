@@ -27,23 +27,105 @@
       class="search-button" 
       (click)="refresh()">Refresh</button>
   </div>
+
 <div class="container">
+  <div class="filter-card">
+    <h3>Top filters others used</h3>
+    
+    <div class="filter-option">
+      <input type="checkbox" id="parking" name="filters" value="parking">
+      <label for="parking">Parking</label>
+    </div>
+    
+    <div class="filter-option">
+      <input type="checkbox" id="privateBathroom" name="filters" value="privateBathroom">
+      <label for="privateBathroom">Private bathroom</label>
+    </div>
+    
+    <div class="filter-option">
+      <input type="checkbox" id="4Stars" name="filters" value="4Stars">
+      <label for="4Stars">4 stars</label>
+    </div>
+    <div class="filter-option">
+      <input type="checkbox" id="freeWiFi" name="filters" value="freeWiFi">
+      <label for="freeWiFi">Free WiFi</label>
+    </div>
+    
+    <div class="filter-option">
+      <input type="checkbox" id="bath" name="filters" value="bath">
+      <label for="bath">Bath</label>
+    </div>
+
+    <hr>
+
+    <h3>Facilities</h3>
+    
+    <div class="filter-option">
+      <input type="checkbox" id="parking" name="filters" value="parking">
+      <label for="parking">Parking</label>
+    </div>
+    
+    <div class="filter-option">
+      <input type="checkbox" id="privateBathroom" name="filters" value="privateBathroom">
+      <label for="privateBathroom">Private bathroom</label>
+    </div>
+    
+    <div class="filter-option">
+      <input type="checkbox" id="4Stars" name="filters" value="4Stars">
+      <label for="4Stars">Breakfast included</label>
+    </div>
+    <div class="filter-option">
+      <input type="checkbox" id="freeWiFi" name="filters" value="freeWiFi">
+      <label for="freeWiFi">Fitness centre</label>
+    </div>
+    
+    <div class="filter-option">
+      <input type="checkbox" id="bath" name="filters" value="bath">
+      <label for="bath">Airport shuttle</label>
+    </div>
+
+    <div class="filter-option">
+      <input type="checkbox" id="bath" name="filters" value="bath">
+      <label for="bath">Spa and sauna</label>
+    </div>
+
+    <div class="filter-option">
+      <input type="checkbox" id="bath" name="filters" value="bath">
+      <label for="bath">Pool</label>
+    </div>
+
+    <hr>
+
+    <h3>Room facilities</h3>
+    
+    <div class="filter-option">
+      <input type="checkbox" id="parking" name="filters" value="parking">
+      <label for="parking">Private bathroom</label>
+    </div>
+    
+    <div class="filter-option">
+      <input type="checkbox" id="privateBathroom" name="filters" value="privateBathroom">
+      <label for="privateBathroom">Soundproofing</label>
+    </div>
+    
+    <div class="filter-option">
+      <input type="checkbox" id="4Stars" name="filters" value="4Stars">
+      <label for="4Stars">Minibar</label>
+    </div>
+    <div class="filter-option">
+      <input type="checkbox" id="freeWiFi" name="filters" value="freeWiFi">
+      <label for="freeWiFi">Air conditioning</label>
+    </div>
+  </div>
+  
     <div class="row">
       <div *ngFor="let hotel of hotels" class="col-sm-4 mb-4">
         <div class="card" (click)="viewHotelDetails(hotel.id)">
-          <div class="card-body">
             <img class="images" [src]="hotel.images[0]" alt="Hotel Image">
-            <h5 class="card-title">{{ hotel.name }} <div class="star-rating">
-              <img *ngFor="let star of getStars(hotel.starRating)" [src]="star" alt="Star">
-            </div></h5>
-            <p class="card-text">
-                
-                  <br>
-               {{ hotel.address }}<br>
-              {{ hotel.phoneNumber }} ,  {{ hotel.email }} <br>
-            <!-- Opcionalno dodaj dugme za više informacija -->
-            <!--<a href="#" class="btn btn-primary">More Info</a> -->
-          </div>
+            <h5 class="card-title">{{ hotel.name }}
+              <img class="star-img" *ngFor="let star of getStars(hotel.starRating)" [src]="star" alt="Star"><br>
+              <img src="assets/location.png" class="location-image">{{ hotel.address }}<br>
+            </h5>
         </div>
       </div>
     </div>

@@ -1,10 +1,10 @@
 <div class="container">
-    <div class="navbar">
+    <!--<div class="navbar">
       <a href="#overview">Overview</a>
       <a href="#rooms-prices">Rooms & prices</a>
       <a href="#facilities">Facilities</a>
       <a href="#reviews">Guest reviews ( {{reviews.length }} )</a>
-    </div>
+    </div>-->
     <div class="column">
       <div class="col-md-4">
       <div id="overview" class="overview">
@@ -53,16 +53,16 @@
               (click)="searchRooms()">Change search</button>
           </div>
           <div *ngFor="let room of rooms" class="mb-4">
-            <div class="card">
+            <div class="card2">
               <div class="card-body">
-                <img class="hotel-image1" [src]="room.images[0]" alt="Room Image">
-                <h5 class="card-title">{{ room.roomType }}</h5>
+                <img class="room-image1" [src]="room.images[0]" alt="Room Image"><br>
+                <b class="card-title">{{ room.roomType }}  ROOM</b>
                 <p class="card-text">
                   {{ room.description }} <br>
                   {{ room.price }}$ per night <button class="reserve-button" (click)="createReservation(room.id)">I'll reserve</button><br>
                 </p>
                 <div *ngIf="roomFacilitiesMap.get(room.id)">
-                    <h4>Facilities</h4>
+                    <b>Facilities</b>
                     <ul>
                       <li *ngFor="let facility of roomFacilitiesMap.get(room.id)">
                         <div class="most-popular-facilities-rooms">
@@ -90,7 +90,7 @@
         </div>
       </div>
   
-    <div id="facilities" class="section facilities">
+    <div id="facilities" class="hotel-facilities">
         <h3 class="facilities-heading">Facilities of {{ hotel?.name }} </h3>
         <h2 class="facilities-heading2">Most popular facilities</h2>
         <div *ngFor="let facility of facilities">
@@ -165,28 +165,25 @@
         <img src="assets/previous.png" class="previous-image" (click)="showPreviousReview()">
         <div class="user-review-details">
             <p>{{ getUserById(reviews[currentReviewIndex].user_id)?.name || 'Unknown name' }}
-            {{ getUserById(reviews[currentReviewIndex].user_id)?.surname || 'Unknown user surname' }}</p>
-            
-        </div>
-      <div class="review-content">
-        <div class="ne-znam">
-        <p class="reviewed-on">Reviewed: {{ formatDate(reviews[currentReviewIndex].reviewDate)  }}</p>
-        <p class="review-comment">{{ reviews[currentReviewIndex].comment || 'No comment provided' }}</p>
-        </div>
-        <div class="bzvzz">
+            {{ getUserById(reviews[currentReviewIndex].user_id)?.surname || 'Unknown user surname' }} 
+            <img class="star-img" *ngFor="let star of getStars(reviews[currentReviewIndex].rating)" [src]="star" alt="Star"><br>
+            Reviewed: {{ formatDate(reviews[currentReviewIndex].reviewDate)  }}</p>
+            <div class="glupost">
             <img src="assets/happy.png" class="smile-image">  {{ reviews[currentReviewIndex].good_comment || 'No good comment provided' }}<br>
+            </div>
+            <div class="glupost2">
+              <img src="assets/sad.png" class="smile-image">   {{ reviews[currentReviewIndex].bad_comment || 'No bad comment provided' }}
+            </div>
         </div>
-        <div class="bzvzz">
-            <img src="assets/sad.png" class="smile-image">   {{ reviews[currentReviewIndex].bad_comment || 'No bad comment provided' }}
+        <div class="review-navigation">
+          <img src="assets/next.png" class="previous-image" (click)="showNextReview()">
         </div>
+            
+          </div>
+          
+      
       </div>
-      <div>
-        
-        <p><strong>Rating:</strong> {{ reviews[currentReviewIndex].rating }}</p>
-      </div>
-      <div class="review-navigation">
-        <img src="assets/next.png" class="previous-image" (click)="showNextReview()">
-      </div>
+      
     </div>
   </div>
   </div>

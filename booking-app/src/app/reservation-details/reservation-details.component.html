@@ -3,21 +3,23 @@
     <div class="left-container" *ngIf="hotel && room">
         <div class="hotel-card">
             <img class="hotel-image1" [src]="hotel.images[0]" alt="Hotel Image">
-            <h5 class="card-title">{{ hotel.name }}<img *ngFor="let star of getStars(hotel.starRating)" [src]="star" alt="Star" class="star-image"></h5>
+            <b class="user-heading">{{ hotel.name }}<img *ngFor="let star of getStars(hotel.starRating)" [src]="star" alt="Star" class="star-image"></b><br><br>
                 
                 {{ hotel.address}}<br>
                 {{ room.roomType}} ROOM 
         </div>
         <div class="booking-details-card">
-            <h5 class="card-title">Your booking details</h5>
+            <b class="user-heading">Your booking details</b>
                 <div class="check-in-check-out">
                     <div class="check-in">
                         <p>Check-in </p>
                         <p><strong>{{ formatDate(startDate) }}</strong></p>
+                        <p>{{ hotel.checkin }}</p>
                     </div>
                     <div class="check-out">
                         <p>Check-out</p>
                         <p><strong>{{ formatDate(endDate) }}</strong></p>
+                        <p>{{ hotel.checkout }}</p>
                     </div>
                 </div>
                 <p>Total length of stay: {{ getNumberOfNights(startDate, endDate) }} nights</p>
@@ -27,7 +29,7 @@
     </div>
     <div class="right-container">
         <div class="user-details-card">
-            <h5 class="user-heading">Enter your details</h5>
+            <b class="user-heading">Enter your details</b>
             <div class="almost-done-card">
                 <p>Almost done! Just fill in the * required info</p>
             </div>
@@ -61,18 +63,15 @@
             <p class="rgheading"><strong>Are you travelling for work? </strong> (optional)</p>
             <div class="radio-group">
                 
-                <input type="radio" id="main-guest" name="guest" value="main" checked>
-                <label for="main-guest">Yes</label><br>
+                <input type="radio" id="yes" name="d" value="yes" checked>
+                <label for="yes">Yes</label><br>
                 
-                <input type="radio" id="someone-else" name="guest" value="someone-else">
-                <label for="someone-else">No</label>
+                <input type="radio" id="no" name="d" value="no">
+                <label for="no">No</label>
             </div>        
         </div>
         <div class="special-requests-card">
-            <h5>Special requests</h5>
-            <p>Special requests cannot be guaranteed – but the property will do its best to meet your needs. You can always make a special request after your booking is complete!</p>
-            <p><strong>Please write your requests in English or Serbian. </strong>(optional)</p><br>
-            <input type="text">
+            <input type="text" placeholder="Please write your requests in English or Serbian. (optional)">
         </div>
         <button class="search-button" (click)="redirectToNextFinalDetails()">
             Next: Final details
